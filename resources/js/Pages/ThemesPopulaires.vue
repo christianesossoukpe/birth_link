@@ -10,11 +10,12 @@
         <textarea v-model="description" placeholder="Entrez une description..." class="w-full mb-4 p-2 border rounded"></textarea>
         <button @click="uploadImage" class="bg-[#a35d71] text-white py-2 px-4 rounded w-full">Envoyer l'image</button>
         <button @click="closeUploadModal" class="bg-gray-500 text-white py-2 px-4 rounded mt-4 w-full">Fermer</button>
+        <!-- Message de succès -->
+        <div v-if="uploadSuccessMessage" class="text-green-500 text-center mt-4">{{ uploadSuccessMessage }}</div>
       </div>
     </div>
 
     <div class="space-y-6 mr-20">
-    
     </div>
 
     <!-- Conteneur pour les cartes -->
@@ -42,8 +43,6 @@
       </button>
     </div>
     </section>
-
-    
 
     <!-- Modale dynamique de la carte -->
     <div v-if="activeCard" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
@@ -78,6 +77,7 @@
   </div>
 </template>
 
+
 <script setup>
 import Nav from '@/Pages/Nav.vue';
 import Aside from '@/Pages/Aside.vue';
@@ -91,6 +91,9 @@ const activeCard = ref(null);
 const showModal = ref(false);
 const description = ref("");
 const file = ref(null);
+
+// Message de succès après l'upload
+const uploadSuccessMessage = ref("");
 
 // Fonction pour récupérer les cartes
 const fetchCards = async () => {
@@ -138,6 +141,7 @@ const closeUploadModal = () => {
   showModal.value = false;
   description.value = "";
   file.value = null;
+  uploadSuccessMessage.value = ""; // Réinitialiser le message de succès
 };
 
 const handleFileChange = (event) => {
@@ -154,12 +158,14 @@ const uploadImage = async () => {
     formData.append('description', description.value);
 
     const response = await axios.post(route('store-theme'), formData);
-    console.log(response.data); 
+
+    // Fermer le modal et afficher le message de succès
+    showModal.value = false;
+    uploadSuccessMessage.value = "Image téléchargée avec succès !"; 
   } catch (error) {
     console.error('Erreur lors du téléchargement de l\'image', error);
   }
 };
-
 
 // Gestion de la modale pour la carte
 const openCardModal = (card) => {
