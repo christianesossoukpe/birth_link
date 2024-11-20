@@ -10,6 +10,7 @@ use App\Http\Controllers\AnniversairePasseController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ThemesPopulairesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +53,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/debug-user', function () {
     return response()->json(Auth::user()); // Affiche les données de l'utilisateur
 });
+
+Route::get('/themespopulaires', [ThemesPopulairesController::class, 'index'])->name('themespopulaires');
+
+Route::post('/store/theme-poulaires', [ThemesPopulairesController::class, 'store'])->name('store-theme');
+Route::get('/themes-populaires', [ThemesPopulairesController::class, 'getCards'])->name('themes-populaires'); 
