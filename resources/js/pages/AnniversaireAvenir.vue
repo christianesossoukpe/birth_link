@@ -1,6 +1,14 @@
 <template>
-    <div class="container">
-      <div class="card" v-for="person in people" :key="person.name">
+    <Aside />
+    <Nav />
+    <div class="h1">
+      <h1 >Liste des anniversaires à venir</h1>
+    </div>
+    <div class="cardContrainer  bg-red-100 min-h-screen">
+    
+
+    <div class="container ">
+     <div class="card" v-for="person in people" :key="person.name">
         <div class="card-header">
           <h3>{{ person.name }}</h3>
           <p>{{ person.role }}</p>
@@ -13,9 +21,12 @@
         </div>
       </div>
     </div>
+    </div>
   </template>
   
   <script setup>
+    import Aside from '@/Pages/Aside.vue';
+  import Nav from '@/Pages/Nav.vue';
   const people = [
     {
       name: 'Henry Pauletta',
@@ -58,6 +69,20 @@
       birthday: '30 juin',
       progress: 90,
       image: 'anastasia_grousse.jpg'
+    },
+    {
+      name: 'Anastasie Groussey',
+      role: 'Senior Designer',
+      birthday: '30 juin',
+      progress: 90,
+      image: 'anastasie_grousse.jpg'
+    },
+    {
+      name: 'Macaire Grousse',
+      role: 'Senior Designer',
+      birthday: '30 juin',
+      progress: 90,
+      image: 'anastasia_grousse.jpg'
     }
   ]
   </script>
@@ -69,7 +94,15 @@
     justify-content: center;
     align-items: center;
     margin: 20px auto;
+    margin-right: 150px;
     max-width: 1200px;
+    margin-top: 0px;
+   
+
+  }
+  h1{
+    text-align: center;
+font-size: 25px;
   }
   
   .card {
@@ -82,6 +115,7 @@
     overflow: hidden;
     width: 250px;
     transition: transform 0.2s;
+    margin-top: 50px;
   }
   
   .card:hover {
@@ -122,5 +156,8 @@
     color: #444;
     margin-top: 10px;
     text-align: center;
+  }
+  Aside{
+    margin-top: 100px;
   }
   </style>

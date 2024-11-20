@@ -1,9 +1,12 @@
 <template>
   <Nav />
   <Aside />
-  <div class="flex items-center justify-center min-h-screen p-6 bg-red-100">
+  <div class="h1">
+      <h1 >Choisissez ici des cartes à envoyer à vos amis!</h1>
+    </div>
+  <div class="flex items-center  justify-center min-h-screen p-6 bg-red-100">
     <!-- Modal d'envoi d'image dans la DB -->
-    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
+    <div v-if="showModal" id="modImage" class="fixed inset-0 bg-black bg-opacity-20 flex justify-center w-1/2  items-center z-10">
       <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
         <h3 class="text-center font-semibold text-xl mb-4">Upload Image</h3>
         <input type="file" @change="handleFileChange" class="w-full mb-4" />
@@ -11,16 +14,16 @@
         <button @click="uploadImage" class="bg-[#a35d71] text-white py-2 px-4 rounded w-full">Envoyer l'image</button>
         <button @click="closeUploadModal" class="bg-gray-500 text-white py-2 px-4 rounded mt-4 w-full">Fermer</button>
         <!-- Message de succès -->
-        <div v-if="uploadSuccessMessage" class="text-green-500 text-center mt-4">{{ uploadSuccessMessage }}</div>
+        <div v-if="uploadSuccessMessage" class="text-red-50 text-center mt-4">{{ uploadSuccessMessage }}</div>
       </div>
     </div>
-
     <div class="space-y-6 mr-20">
     </div>
 
     <!-- Conteneur pour les cartes -->
-    <section id="sessioncard" class="grid grid-cols-4 gap-8 mt-6">
-      <div v-for="card in paginatedCards" :key="card.id" class="card-container">
+    <section id="sessioncard" class="grid grid-cols-4 gap-6 mb-5">
+      <div v-for="card in paginatedCards" :key="card.id" 
+      class="card-container">
         <img
           :src="`http://127.0.0.1:8000/${card.image_path}`"
           alt="Image de la carte"
@@ -30,11 +33,13 @@
         <p class="text-black text-center mt-4">{{ card.description }}</p>
       </div>
       <!-- Pagination -->
-    <div class="flex justify-center items-center space-x-4 mt-6 mb-1">
+    <div id="pagination" class="flex justify-center items-center space-x-4 mt-10 mb-1">
       <button @click="changePage('prev')" :disabled="currentPage === 1" class="bg-[#a35d71] text-white py-2 px-3 rounded disabled:opacity-50">
         Précédent
       </button>
-      <span class="text-lg font-semibold">{{ currentPage }} / {{ totalPages }}</span>
+      <span class="text-lg font-semibold">{{ currentPage }} </span>
+        <span>  / </span>
+        <span>{{ totalPages }}</span>
       <button @click="changePage('next')" :disabled="currentPage === totalPages" class="bg-[#a35d71] text-white py-2 px-3 rounded disabled:opacity-50">
         Suivant
       </button>
@@ -192,13 +197,22 @@ const sendCard = async (card) => {
   max-width: 450px;
 }
 .card-container img {
-  width: 1000px;
-  height: 300px;
+  width: 1010px;
+  height: 255px;
   object-fit: cover;
+  margin-bottom:5px;
 }
 #sessioncard {
   margin-left: 250px;
-}
+  }
+#modImage {
+  margin-left: 650px;
+  }
+#pagination {
+  margin-left: 700px;
+  margin-top: 1px;
+  margin-bottom: 90px;
+  }
 button:focus {
   outline: none;
 }
@@ -215,4 +229,9 @@ button.absolute.top-4.right-4 {
   align-items: center;
   padding: 20px;
 }
+h1{
+    text-align: center;
+font-size: 25px;
+  }
+
 </style>
