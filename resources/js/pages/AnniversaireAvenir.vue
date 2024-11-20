@@ -33,7 +33,7 @@
       role: 'Senior Developer',
       birthday: '15 janvier',
       progress: 80,
-      image: 'henry_pauletta.jpg'
+      image: '/images/ninho.jpg'
     },
     {
       name: 'Evan Jefferson',

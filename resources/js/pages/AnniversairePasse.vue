@@ -33,7 +33,7 @@
       name: 'Evan Jefferson',
       role: 'Creative Director',
       progress: 70,
-      image: 'evan_jefferson.jpg'
+      image: '/images/ninho.jpg'
     },
     {
       name: 'Evan Jefferson',

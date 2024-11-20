@@ -1,10 +1,11 @@
 <template>
     <aside
+    
         class="w-64 bg-white   shadow-lg fixed top-25 left-0 z-40  h-screen transition-transform -translate-x-full sm:translate-x-0">
         <button class="bg-red-500 text-white py-2 px-4 rounded mb-6 hover:bg-red-600 transition duration-300">
             Créer Nouveau
         </button>
-        <nav>
+        <nav id="aside" >
             <ul>
                 <li class="mb-4">
                     <a class="flex items-center text-gray-700 hover:text-red-500 transition duration-300" href="#">
@@ -71,7 +72,7 @@
                         </li>
                         <li class="mb-2">
                             <a class="text-gray-500 hover:text-red-500 transition duration-300" href="/theme">
-                                Personnalisés
+                                Thèmes Personnalisés
                             </a>
                         </li>
                     </ul>
@@ -137,6 +138,9 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+#aside{
+    margin-left: 20px;
+}
 .animate-bounce-slow {
     animation: bounce 2s infinite;
 }
