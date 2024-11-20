@@ -12,6 +12,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThemepersonController;
 use App\Http\Controllers\ThemesPopulairesController;
+use App\Http\Controllers\VoeuxController;
 use App\Models\Friend;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -68,5 +69,10 @@ Route::get('/friends', [FriendController::class, 'index'])->name('friends');
 
 Route::get('/themespopulaires', [ThemesPopulairesController::class, 'index'])->name('themespopulaires');
 
+// route des themespopulaires
 Route::post('/store/theme-poulaires', [ThemesPopulairesController::class, 'store'])->name('store-theme');
 Route::get('/themes-populaires', [ThemesPopulairesController::class, 'getCards'])->name('themes-populaires');
+
+// route des voeux
+// Route::post('/voeuxEnvoyes', [VoeuxController::class, 'index'])->name('voeuxEnvoyes');
+Route::get('/voeuxRecu', [VoeuxController::class, 'index'])->name('voeuxRecu');
